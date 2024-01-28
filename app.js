@@ -8,11 +8,12 @@ console.log("hy");
 //   isRead,
 // };
 
-function Book(name, author, page, isRead) {
+function Book(name, author, page, isRead, mark) {
   this.name = name;
   this.author = author;
   this.page = page;
   this.isRead = isRead;
+  this.bookMark = mark;
 }
 
 Book.prototype.pages = function () {
@@ -22,8 +23,8 @@ console.log(Book.prototype);
 
 const listOfBook = [];
 
-function createBook(n, a, p, i) {
-  let book = new Book(n, a, p, i);
+function createBook(n, a, p, r, m) {
+  let book = new Book(n, a, p, r, m);
   listOfBook.push(book);
 }
 
@@ -48,6 +49,8 @@ function deleteListBook(index) {
 const addBook = document.querySelector(".add-book");
 const modal = document.querySelector(".modal");
 const cancelModal = document.querySelector(".cancel-modal");
+const form = document.querySelector(".form");
+
 addBook.addEventListener("click", (ev) => {
   modal.showModal();
 });
@@ -64,4 +67,17 @@ submitBtn.addEventListener("click", (ev) => {
   // //   });
   //   modal.close();
   //   console.log(ev.returnValue);
+
+  // take data from user input
+
+  const data = new FormData(form); // create array of object
+
+  // let create object from submit data of form
+  let obj = Object.create(Book);
+  console.log(obj);
+  obj = Object.fromEntries(data);
+  const values = Object.values(obj);
+  createBook(...values);
+
+  displayListBook();
 });

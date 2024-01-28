@@ -12,7 +12,7 @@
     <div class="add-book">+</div>
     <dialog class="modal">
       <div class="cancel-modal">+</div>
-      <form action="" method="dialog">
+      <form action="" method="dialog" class="form">
         <label for="b-name"
           >Book name:<input
             type="text"
@@ -35,7 +35,7 @@
             id="page-no"
             placeholder="Total page"
         /></label>
-        <fieldset>
+        <!-- <fieldset>
           <legend>Have you read the book?</legend>
           <label for="yes"
             ><input type="radio" name="read" id="yes" />Yes I have read</label
@@ -44,7 +44,11 @@
             ><input checked type="radio" name="read" id="no" />No I haven't read
             it</label
           >
-        </fieldset>
+        </fieldset> -->
+        <select name="read" id="read">
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
         <label for="bookmark"
           >Book mark:<input type="tel" name="bookmark" id="bookmark" value="0"
         /></label>
