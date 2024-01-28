@@ -29,7 +29,7 @@ function createBook(n, a, p, r, m) {
 }
 
 function displayListBook() {
-  listOfBook.forEach((obj) => createCard(obj));
+  listOfBook.forEach((obj, ind) => createCard(obj, ind));
 }
 
 function deleteListBook(index) {
@@ -72,12 +72,17 @@ submitBtn.addEventListener("click", (ev) => {
   if (read.value == "no") {
     bookMark.value = 0;
   }
-  if (!(text.test(bookName.value) && text.test(author.value))) {
+  if (
+    !(text.test(bookName.value) && text.test(author.value)) ||
+    bookMark.value > pageNo.value
+  ) {
     ev.preventDefault();
     console.log("patter does not match");
-  } else if (bookMark.value > pageNo.value) {
-    ev.stopPropagation();
-    console.log("book mark must be less than page number");
+    //   }
+
+    //   if (bookMark.value > pageNo.value) {
+    //     ev.stopPropagation();
+    //     console.log("book mark must be less than page number");
   }
   //   else if () {
 
@@ -114,9 +119,10 @@ submitBtn.addEventListener("click", (ev) => {
 //   this.bookMark = mark;
 // }
 
-function createCard(obj) {
+function createCard(obj, ind) {
   const card = document.createElement("div");
   card.classList.add("card");
+  //   card.dataset.index = ind;
 
   const bookName = document.createElement("p");
   bookName.innerHTML = `Book Name: <span>${obj.name}</span>`;
@@ -146,6 +152,13 @@ function createCard(obj) {
   bookmark.classList.add("card__bookmark");
   div.append(bookmark);
   card.append(div);
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.innerHTML = `Remove`;
+  deleteBtn.classList.add("delete-btn");
+  deleteBtn.dataset.index = ind;
+  card.append(deleteBtn);
+
   bookDisplay.append(card);
 }
 
@@ -155,3 +168,13 @@ function removeAllChild() {
     bookDisplay.removeChild(el);
   });
 }
+
+// delete cards when delete button is clicked
+
+bookDisplay.addEventListener("click", (ev) => {
+  if (ev.target.dataset.index != undefined) {
+    listOfBook.splice(ev.target.dataset.index, 1);
+    removeAllChild();
+    displayListBook();
+  }
+});
