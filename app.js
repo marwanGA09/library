@@ -65,16 +65,16 @@ submitBtn.addEventListener("click", (ev) => {
   const read = document.querySelector("#read");
   let bookName = document.querySelector("#b-name");
   let author = document.querySelector("#author");
-  //   let bookName = document.querySelector("#b-name");
 
-  const text = /[A-Za-z]+/;
-
+  const text = /^[A-Za-z]+$/;
+  const number = /^\d+$/;
   if (read.value == "no") {
     bookMark.value = 0;
   }
   if (
     !(text.test(bookName.value) && text.test(author.value)) ||
-    bookMark.value > pageNo.value
+    bookMark.value > pageNo.value ||
+    !(number.test(bookMark.value) && number.test(pageNo.value))
   ) {
     ev.preventDefault();
     console.log("patter does not match");
