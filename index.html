@@ -18,6 +18,7 @@
             type="text"
             name="b-name"
             id="b-name"
+            pattern="[A-Za-z]+"
             placeholder="Book name"
             required
         /></label>
@@ -26,6 +27,7 @@
             type="text"
             name="author"
             id="author"
+            pattern="[A-Za-z]+"
             placeholder="Author name"
         /></label>
         <label for="page-no"
@@ -33,6 +35,7 @@
             type="tel"
             name="page-no"
             id="page-no"
+            pattern="\d+"
             placeholder="Total page"
         /></label>
         <!-- <fieldset>
@@ -45,12 +48,18 @@
             it</label
           >
         </fieldset> -->
+        <label for="read">Have you read the book?</label>
         <select name="read" id="read">
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
+          <option value="yes">Yes I have read</option>
+          <option selected value="no">No I haven't read it</option>
         </select>
         <label for="bookmark"
-          >Book mark:<input type="tel" name="bookmark" id="bookmark" value="0"
+          >Book mark:<input
+            type="tel"
+            name="bookmark"
+            id="bookmark"
+            value="0"
+            pattern="\d+"
         /></label>
         <button type="submit" class="submit-btn">Add To Library</button>
       </form>

@@ -61,6 +61,33 @@ cancelModal.addEventListener("click", (ev) => {
 
 const submitBtn = document.querySelector(".submit-btn");
 submitBtn.addEventListener("click", (ev) => {
+  const bookMark = document.querySelector("#bookmark");
+  const pageNo = document.querySelector("#page-no");
+  const read = document.querySelector("#read");
+  console.log(read.value);
+  console.log(bookMark.value);
+  if (read.value == "no") {
+    bookMark.value = 0;
+  }
+
+  if (bookMark.value > pageNo.value) {
+    ev.stopPropagation();
+    console.log("book mark must be less than page number");
+  }
+  //   else if () {
+
+  //   }
+  else {
+    const data = new FormData(form); // create array of object
+
+    // let create object from submit data of form
+    let obj = Object.create(Book);
+    console.log(obj);
+    obj = Object.fromEntries(data);
+    const values = Object.values(obj);
+    createBook(...values);
+  }
+
   //   const input = document.querySelectorAll('input[type="text"]');
   //   input.forEach((inp) => {
   //     console.log(inp);
@@ -69,15 +96,4 @@ submitBtn.addEventListener("click", (ev) => {
   //   console.log(ev.returnValue);
 
   // take data from user input
-
-  const data = new FormData(form); // create array of object
-
-  // let create object from submit data of form
-  let obj = Object.create(Book);
-  console.log(obj);
-  obj = Object.fromEntries(data);
-  const values = Object.values(obj);
-  createBook(...values);
-
-  displayListBook();
 });
