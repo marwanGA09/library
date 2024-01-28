@@ -8,6 +8,7 @@ console.log("hy");
 //   isRead,
 // };
 
+const bookDisplay = document.querySelector(".book-display");
 function Book(name, author, page, isRead, mark) {
   this.name = name;
   this.author = author;
@@ -28,7 +29,7 @@ function createBook(n, a, p, r, m) {
 }
 
 function displayListBook() {
-  listOfBook.forEach((e) => console.log(e));
+  listOfBook.forEach((obj) => createCard(obj));
 }
 
 function deleteListBook(index) {
@@ -39,6 +40,7 @@ createBook("poor dad", "robert", 134, "yes", 17);
 createBook("Alchemy", "caylo", 124, "yes", 117);
 createBook("atomic habit", "some one", 134, "no", 0);
 createBook("The  miracle of", "ahmed", 334, "no", 0);
+displayListBook();
 
 // listOfBook[1].pages();
 // displayListBook();
@@ -61,13 +63,19 @@ submitBtn.addEventListener("click", (ev) => {
   const bookMark = document.querySelector("#bookmark");
   const pageNo = document.querySelector("#page-no");
   const read = document.querySelector("#read");
-  console.log(read.value);
-  console.log(bookMark.value);
+  let bookName = document.querySelector("#b-name");
+  let author = document.querySelector("#author");
+  //   let bookName = document.querySelector("#b-name");
+
+  const text = /[A-Za-z]+/;
+
   if (read.value == "no") {
     bookMark.value = 0;
   }
-
-  if (bookMark.value > pageNo.value) {
+  if (!(text.test(bookName.value) && text.test(author.value))) {
+    ev.preventDefault();
+    console.log("patter does not match");
+  } else if (bookMark.value > pageNo.value) {
     ev.stopPropagation();
     console.log("book mark must be less than page number");
   }
@@ -83,6 +91,9 @@ submitBtn.addEventListener("click", (ev) => {
     obj = Object.fromEntries(data);
     const values = Object.values(obj);
     createBook(...values);
+
+    removeAllChild();
+    displayListBook();
   }
 
   //   const input = document.querySelectorAll('input[type="text"]');
@@ -104,7 +115,6 @@ submitBtn.addEventListener("click", (ev) => {
 // }
 
 function createCard(obj) {
-  const bookDisplay = document.querySelector(".book-display");
   const card = document.createElement("div");
   card.classList.add("card");
 
@@ -139,5 +149,9 @@ function createCard(obj) {
   bookDisplay.append(card);
 }
 
-console.log(listOfBook[0]);
-createCard(listOfBook[0]);
+function removeAllChild() {
+  const div = document.querySelectorAll(".book-display .card");
+  div.forEach((el) => {
+    bookDisplay.removeChild(el);
+  });
+}
