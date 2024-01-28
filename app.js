@@ -16,10 +16,9 @@ function Book(name, author, page, isRead, mark) {
   this.bookMark = mark;
 }
 
-Book.prototype.pages = function () {
-  console.log(this.page);
-};
-console.log(Book.prototype);
+// Book.prototype.pages = function () {
+//   console.log(this.page);
+// };
 
 const listOfBook = [];
 
@@ -36,12 +35,10 @@ function deleteListBook(index) {
   console.log(listOfBook.splice(index, 1));
 }
 
-// createBook("asa", "bb", 34, true);
-// createBook("ddd", "bb", 34, true);
-// createBook("qqq", "bb", 34, true);
-// createBook("vvv", "bb", 34, true);
-// displayListBook();
-// deleteListBook(1);
+createBook("poor dad", "robert", 134, "yes", 17);
+createBook("Alchemy", "caylo", 124, "yes", 117);
+createBook("atomic habit", "some one", 134, "no", 0);
+createBook("The  miracle of", "ahmed", 334, "no", 0);
 
 // listOfBook[1].pages();
 // displayListBook();
@@ -97,3 +94,50 @@ submitBtn.addEventListener("click", (ev) => {
 
   // take data from user input
 });
+
+// function Book(name, author, page, isRead, mark) {
+//   this.name = name;
+//   this.author = author;
+//   this.page = page;
+//   this.isRead = isRead;
+//   this.bookMark = mark;
+// }
+
+function createCard(obj) {
+  const bookDisplay = document.querySelector(".book-display");
+  const card = document.createElement("div");
+  card.classList.add("card");
+
+  const bookName = document.createElement("p");
+  bookName.innerHTML = `Book Name: <span>${obj.name}</span>`;
+  bookName.classList.add("card__book-name");
+  card.append(bookName);
+
+  const author = document.createElement("p");
+  author.innerHTML = `Author: <span>${obj.author}</span>`;
+  author.classList.add("card__author");
+  card.append(author);
+
+  const page = document.createElement("p");
+  page.innerHTML = `page Number: <span>${obj.page}</span>`;
+  page.classList.add("card__page");
+  card.append(page);
+
+  const div = document.createElement("div");
+  const read = document.createElement("p");
+  read.innerHTML = `Have you read?: <span>${
+    obj.isRead == "yes" ? "👍" : "👎"
+  }</span>`;
+  read.classList.add("card__read");
+  div.append(read);
+
+  const bookmark = document.createElement("p");
+  bookmark.innerHTML = `bookmark: <span>${obj.bookMark}</span>`;
+  bookmark.classList.add("card__bookmark");
+  div.append(bookmark);
+  card.append(div);
+  bookDisplay.append(card);
+}
+
+console.log(listOfBook[0]);
+createCard(listOfBook[0]);
