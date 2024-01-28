@@ -13,56 +13,47 @@
     <dialog class="modal">
       <div class="cancel-modal">+</div>
       <form action="" method="dialog" class="form">
-        <label for="b-name"
-          >Book name:<input
-            type="text"
-            name="b-name"
-            id="b-name"
-            pattern="[A-Za-z]+"
-            placeholder="Book name"
-            required
-        /></label>
-        <label for="author"
-          >Author name:<input
-            type="text"
-            name="author"
-            id="author"
-            pattern="[A-Za-z]+"
-            placeholder="Author name"
-            required
-        /></label>
-        <label for="page-no"
-          >Total Page:<input
-            type="tel"
-            name="page-no"
-            id="page-no"
-            pattern="\d+"
-            placeholder="Total page"
-            required
-        /></label>
-        <!-- <fieldset>
-          <legend>Have you read the book?</legend>
-          <label for="yes"
-            ><input type="radio" name="read" id="yes" />Yes I have read</label
-          >
-          <label for="no"
-            ><input checked type="radio" name="read" id="no" />No I haven't read
-            it</label
-          >
-        </fieldset> -->
+        <label for="b-name">Book name:</label
+        ><input
+          type="text"
+          name="b-name"
+          id="b-name"
+          pattern="[A-Za-z]+"
+          placeholder="Book name"
+          required
+        />
+        <label for="author">Author name:</label
+        ><input
+          type="text"
+          name="author"
+          id="author"
+          pattern="[A-Za-z]+"
+          placeholder="Author name"
+          required
+        />
+        <label for="page-no">Total Page:</label
+        ><input
+          type="tel"
+          name="page-no"
+          id="page-no"
+          pattern="\d+"
+          placeholder="Total page"
+          required
+        />
+
         <label for="read">Have you read the book?</label>
         <select name="read" id="read">
           <option value="yes">Yes I have read</option>
           <option selected value="no">No I haven't read it</option>
         </select>
-        <label for="bookmark"
-          >Book mark:<input
-            type="tel"
-            name="bookmark"
-            id="bookmark"
-            value="0"
-            pattern="\d+"
-        /></label>
+        <label for="bookmark">Book mark:</label
+        ><input
+          type="tel"
+          name="bookmark"
+          id="bookmark"
+          value="0"
+          pattern="\d+"
+        />
         <button type="submit" class="submit-btn">Add To Library</button>
       </form>
     </dialog>

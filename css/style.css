@@ -12,6 +12,59 @@ body {
   font-size: 1.6rem;
 }
 
+.modal {
+  margin: auto;
+  width: min(40rem, 80vw);
+  height: 57rem;
+  border: 0;
+  position: relative;
+  padding: 7rem 4rem;
+  box-shadow: 0 0 0.8rem 0.2rem rgba(0, 0, 0, 0.845);
+  background-color: beige;
+}
+.modal .cancel-modal {
+  color: red;
+  font-size: 4.6rem;
+  font-weight: 900;
+  position: absolute;
+  top: 1rem;
+  right: 1.6rem;
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+.modal::backdrop {
+  background-color: rgba(228, 193, 148, 0.704);
+}
+.modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  font-size: 2rem;
+}
+.modal form label {
+  border-bottom: 0.2rem solid burlywood;
+  width: max-content;
+}
+.modal form input,
+.modal form select {
+  margin: 0 2rem 1.2rem 0;
+  width: 80%;
+  align-self: flex-end;
+  padding: 0.3rem 0.6rem;
+  border: 0.2rem solid rgba(0, 128, 0, 0.679);
+  outline: 0;
+  background-color: rgba(144, 144, 41, 0.2431372549);
+  border-radius: 0.4rem;
+}
+.modal .submit-btn {
+  padding: 1rem 3rem;
+  border: 0;
+  width: max-content;
+  align-self: center;
+  border-radius: 4rem;
+  background-color: burlywood;
+}
+
 .book-display {
   width: 80vw;
   margin: 2rem auto;
