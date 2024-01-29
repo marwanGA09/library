@@ -1,3 +1,15 @@
+$color-primary: #9b815f;
+$color-primary-light: #deb887;
+$color-primary-dark: #6f5c44;
+
+$color-secondary: #008000;
+$color-secondary-light: #339933;
+$color-secondary-dark: #005a00;
+
+$color-tertiary: #da17da;
+$color-tertiary-light: #991099;
+$color-tertiary-dark: #e55de5;
+
 * {
   padding: 0;
   margin: 0;
@@ -37,7 +49,9 @@ body {
   }
 
   &::backdrop {
-    background-color: rgba(228, 193, 148, 0.704);
+    // save it
+    // background-color: rgba(228, 193, 148, 0.704);
+    background-color: rgba($color-primary-light, 0.75);
   }
 
   form {
@@ -47,7 +61,8 @@ body {
     font-size: 2rem;
 
     label {
-      border-bottom: 0.2rem solid burlywood;
+      // border-bottom: 0.2rem solid #deb887;
+      border-bottom: 0.2rem solid $color-primary;
       width: max-content;
     }
 
@@ -57,7 +72,9 @@ body {
       width: 80%;
       align-self: flex-end;
       padding: 0.3rem 0.6rem;
-      border: 0.2rem solid rgba(0, 128, 0, 0.679);
+      // border: 0.2rem solid #008000ad;
+      border: 0.2rem solid rgba($color-secondary-light, 0.6);
+
       outline: 0;
       background-color: darken($color: #f5f5dc3e, $amount: 55%);
       //   color: white;
@@ -71,7 +88,7 @@ body {
     width: max-content;
     align-self: center;
     border-radius: 4rem;
-    background-color: burlywood;
+    background-color: $color-primary-light;
   }
 }
 
@@ -84,7 +101,7 @@ body {
 
   .header {
     grid-column: span 2;
-    background-color: rgba(170, 222, 190, 0.708);
+    background-color: rgba($color-secondary-light, 0.8);
     padding: 0.8rem;
     text-align: center;
     padding: 0.8rem;
@@ -97,7 +114,7 @@ body {
       width: max-content;
       font-size: 6.6rem;
       font-weight: 900;
-      color: burlywood;
+      color: $color-primary-light;
       position: relative;
       transition: all 0.7s ease-out;
       cursor: pointer;
@@ -105,7 +122,9 @@ body {
       &:active {
         transform: scale(1.1);
       }
-
+      &:hover {
+        color: lighten($color-primary-light, 50%);
+      }
       &::after,
       &::before {
         color: rgb(40, 40, 40);
@@ -126,7 +145,7 @@ body {
   }
 
   .sidebar {
-    background-color: #cbb31655;
+    background-color: lighten($color-primary, 32%);
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -137,10 +156,11 @@ body {
   }
 
   .main {
-    background-color: #abab943e;
-    // background-color: beige;
+    background-color: #ab94943e;
+    // background-color: #f5f5dc;
     padding: 2rem 8rem 0 4rem;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
 }
 
@@ -180,7 +200,7 @@ body {
     .delete-btn {
       position: absolute;
       bottom: 3rem;
-      background-color: burlywood;
+      background-color: $color-primary-light;
       color: white;
       padding: 1rem 2.5rem;
       border: 0;
@@ -189,7 +209,7 @@ body {
       font-weight: bold;
 
       &:active {
-        background-color: darken($color: burlywood, $amount: 11%);
+        background-color: darken($color-primary-light, 10%);
       }
     }
   }
