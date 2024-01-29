@@ -75,6 +75,52 @@ submitBtn.addEventListener("click", (ev) => {
   if (read.value == "no") {
     bookMark.value = 0;
   }
+
+  const errorName = document.querySelector("label[for='b-name'] .error");
+  const errorAuthor = document.querySelector("label[for='author'] .error");
+  const errorPage = document.querySelector("label[for='page-no'] .error");
+  const errorBookmark = document.querySelector("label[for='bookmark'] .error");
+
+  if (!text.test(bookName.value)) {
+    errorName.textContent = "Book name should be character";
+    bookName.style.border = `0.2rem solid rgba(219, 60, 60, 0.6)`;
+  } else {
+    bookName.style.border = `0.2rem solid #339933`;
+    errorName.textContent = "";
+  }
+
+  if (!text.test(author.value)) {
+    errorAuthor.textContent = "Author name should be character";
+    author.style.border = `0.2rem solid rgba(219, 60, 60, 0.6)`;
+  } else {
+    author.style.border = `0.2rem solid #339933`;
+    errorAuthor.textContent = "";
+  }
+
+  if (!number.test(bookMark.value)) {
+    errorBookmark.textContent = "Bookmark should be number";
+    bookMark.style.border = `0.2rem solid rgba(219, 60, 60, 0.6)`;
+  } else {
+    errorBookmark.textContent = "";
+    bookMark.style.border = `0.2rem solid #339933`;
+  }
+
+  if (!number.test(pageNo.value)) {
+    errorPage.textContent = "Page should be number";
+    pageNo.style.border = `0.2rem solid rgba(219, 60, 60, 0.6)`;
+  } else {
+    errorPage.textContent = "";
+    pageNo.style.border = `0.2rem solid #339933`;
+  }
+
+  if (bookMark.value > pageNo.value && number.test(bookMark.value)) {
+    errorBookmark.textContent = "Bookmark must be less than page number";
+    bookMark.style.border = `0.2rem solid rgba(219, 60, 60, 0.6)`;
+  } else if (bookMark.value <= pageNo.value && number.test(bookMark.value)) {
+    errorBookmark.textContent = "";
+    bookMark.style.border = `0.2rem solid #339933`;
+  }
+
   if (
     !(text.test(bookName.value) && text.test(author.value)) ||
     bookMark.value > pageNo.value ||
@@ -103,13 +149,17 @@ submitBtn.addEventListener("click", (ev) => {
 
     removeAllChild();
     displayListBook();
+
+    // clear up the input
+    const input = document.querySelectorAll('input[type="text"]');
+    input.forEach((inp) => {
+      console.log(inp);
+      inp.value = "";
+    });
+    pageNo.value = "";
+    modal.close();
   }
 
-  //   const input = document.querySelectorAll('input[type="text"]');
-  //   input.forEach((inp) => {
-  //     console.log(inp);
-  // //   });
-  //   modal.close();
   //   console.log(ev.returnValue);
 
   // take data from user input

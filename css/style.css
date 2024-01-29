@@ -46,6 +46,11 @@ body {
   border-bottom: 0.2rem solid #9b815f;
   width: max-content;
 }
+.modal form label .error {
+  font-size: 1.2rem;
+  color: red;
+  margin-left: 0.4rem;
+}
 .modal form input,
 .modal form select {
   margin: 0 2rem 1.2rem 0;
