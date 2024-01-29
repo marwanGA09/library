@@ -69,6 +69,7 @@ body {
   align-self: center;
   border-radius: 4rem;
   background-color: #deb887;
+  cursor: pointer;
 }
 
 .container {

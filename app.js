@@ -1,13 +1,3 @@
-console.log("hy");
-
-// create book object
-// const Book = {
-//   names,
-//   author,
-//   page,
-//   isRead,
-// };
-
 const bookDisplay = document.querySelector(".book-display");
 function Book(name, author, page, isRead, mark) {
   this.name = name;
@@ -16,10 +6,6 @@ function Book(name, author, page, isRead, mark) {
   this.isRead = isRead;
   this.bookMark = mark;
 }
-
-// Book.prototype.pages = function () {
-//   console.log(this.page);
-// };
 
 const listOfBook = [];
 
@@ -45,9 +31,6 @@ createBook("atomic habit", "some one", 134, "no", 0);
 createBook("Alchemy", "caylo", 124, "yes", 117);
 createBook("atomic habit", "some one", 134, "no", 0);
 displayListBook();
-
-// listOfBook[1].pages();
-// displayListBook();
 
 const addBook = document.querySelector(".add-book");
 const modal = document.querySelector(".modal");
@@ -113,7 +96,11 @@ submitBtn.addEventListener("click", (ev) => {
     pageNo.style.border = `0.2rem solid #339933`;
   }
 
-  if (bookMark.value > pageNo.value && number.test(bookMark.value)) {
+  if (
+    bookMark.value > pageNo.value &&
+    number.test(bookMark.value) &&
+    bookMark === 0
+  ) {
     errorBookmark.textContent = "Bookmark must be less than page number";
     bookMark.style.border = `0.2rem solid rgba(219, 60, 60, 0.6)`;
   } else if (bookMark.value <= pageNo.value && number.test(bookMark.value)) {
@@ -127,17 +114,7 @@ submitBtn.addEventListener("click", (ev) => {
     !(number.test(bookMark.value) && number.test(pageNo.value))
   ) {
     ev.preventDefault();
-    console.log("patter does not match");
-    //   }
-
-    //   if (bookMark.value > pageNo.value) {
-    //     ev.stopPropagation();
-    //     console.log("book mark must be less than page number");
-  }
-  //   else if () {
-
-  //   }
-  else {
+  } else {
     const data = new FormData(form); // create array of object
 
     // let create object from submit data of form
@@ -159,24 +136,11 @@ submitBtn.addEventListener("click", (ev) => {
     pageNo.value = "";
     modal.close();
   }
-
-  //   console.log(ev.returnValue);
-
-  // take data from user input
 });
-
-// function Book(name, author, page, isRead, mark) {
-//   this.name = name;
-//   this.author = author;
-//   this.page = page;
-//   this.isRead = isRead;
-//   this.bookMark = mark;
-// }
 
 function createCard(obj, ind) {
   const card = document.createElement("div");
   card.classList.add("card");
-  //   card.dataset.index = ind;
 
   const bookName = document.createElement("p");
   bookName.innerHTML = `Book Name: <span>${obj.name}</span>`;

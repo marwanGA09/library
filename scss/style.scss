@@ -49,8 +49,6 @@ body {
   }
 
   &::backdrop {
-    // save it
-    // background-color: rgba(228, 193, 148, 0.704);
     background-color: rgba($color-primary-light, 0.75);
   }
 
@@ -61,7 +59,6 @@ body {
     font-size: 2rem;
 
     label {
-      // border-bottom: 0.2rem solid #deb887;
       border-bottom: 0.2rem solid $color-primary;
       width: max-content;
 
@@ -78,18 +75,12 @@ body {
       width: 80%;
       align-self: flex-end;
       padding: 0.3rem 0.6rem;
-      // border: 0.2rem solid #008000ad;
       border: 0.2rem solid rgba($color-secondary-light, 0.6);
 
       outline: 0;
       background-color: darken($color: #f5f5dc3e, $amount: 55%);
-      //   color: white;
       border-radius: 0.4rem;
     }
-
-    // input:invalid {
-    //   border: 0.2rem solid rgba(rgb(219, 60, 60), 0.6);
-    // }
   }
 
   .submit-btn {
@@ -99,6 +90,7 @@ body {
     align-self: center;
     border-radius: 4rem;
     background-color: $color-primary-light;
+    cursor: pointer;
   }
 }
 
@@ -167,7 +159,6 @@ body {
 
   .main {
     background-color: #ab94943e;
-    // background-color: #f5f5dc;
     padding: 2rem 8rem 0 4rem;
     overflow-y: scroll;
     overflow-x: hidden;
