@@ -8,8 +8,6 @@
     <script src="app.js" defer></script>
   </head>
   <body>
-    <h1>Library 👛</h1>
-    <div class="add-book">+</div>
     <dialog class="modal">
       <div class="cancel-modal">+</div>
       <form action="" method="dialog" class="form">
@@ -18,7 +16,7 @@
           type="text"
           name="b-name"
           id="b-name"
-          pattern="[A-Za-z]+"
+          pattern="^[A-Za-z]+$"
           placeholder="Book name"
           required
         />
@@ -27,7 +25,7 @@
           type="text"
           name="author"
           id="author"
-          pattern="[A-Za-z]+"
+          pattern="^[A-Za-z]+$"
           placeholder="Author name"
           required
         />
@@ -36,7 +34,7 @@
           type="tel"
           name="page-no"
           id="page-no"
-          pattern="\d+"
+          pattern="^\d+$"
           placeholder="Total page"
           required
         />
@@ -52,12 +50,38 @@
           name="bookmark"
           id="bookmark"
           value="0"
-          pattern="\d+"
+          pattern="^\d+$"
         />
         <button type="submit" class="submit-btn">Add To Library</button>
       </form>
     </dialog>
+    <div class="container">
+      <div class="header">
+        <h1>
+          Library Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Perspiciatis possimus quasi nulla, totam .👛
+        </h1>
+        <div class="add-book">+</div>
+      </div>
+      <div class="sidebar">
+        <h3>Description</h3>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti
+          quidem sapiente quos nesciunt tempore vitae distinctio aliquid rem
+          inventore consequuntur, temporibus minima consequatur quis mollitia!
+          Nemo qui explicabo similique saepe
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum,
+          consequatur est itaque fuga, autem error nobis impedit ut tempora
+          tempore aperiam esse rerum soluta possimus inventore magni architecto
+          libero. Facere.
+        </p>
+      </div>
 
-    <div class="book-display"></div>
+      <div class="main">
+        <div class="book-display"></div>
+      </div>
+    </div>
   </body>
 </html>

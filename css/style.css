@@ -17,6 +17,7 @@ body {
   width: min(40rem, 80vw);
   height: 57rem;
   border: 0;
+  border-radius: 2rem;
   position: relative;
   padding: 7rem 4rem;
   box-shadow: 0 0 0.8rem 0.2rem rgba(0, 0, 0, 0.845);
@@ -63,6 +64,60 @@ body {
   align-self: center;
   border-radius: 4rem;
   background-color: burlywood;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-template-rows: 12rem calc(100vh - 12.2rem);
+}
+.container .header {
+  grid-column: span 2;
+  background-color: rgba(36, 126, 71, 0.565);
+  padding: 0.8rem;
+  text-align: center;
+  padding: 0.8rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.container .header .add-book {
+  width: max-content;
+  font-size: 6.6rem;
+  font-weight: 900;
+  color: burlywood;
+  position: relative;
+  transition: all 0.7s ease-out;
+}
+.container .header .add-book:active {
+  transform: scale(1.1);
+}
+.container .header .add-book::after, .container .header .add-book::before {
+  color: rgb(40, 40, 40);
+  position: absolute;
+  font-size: 4rem;
+  top: 1.5rem;
+}
+.container .header .add-book::after {
+  content: "Book";
+  right: -10rem;
+}
+.container .header .add-book::before {
+  left: -9rem;
+  content: "Add";
+}
+.container .sidebar {
+  background-color: rgba(205, 205, 36, 0.2431372549);
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0 2rem;
+}
+.container .main {
+  background-color: rgba(35, 90, 177, 0.624);
 }
 
 .book-display {
