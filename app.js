@@ -39,6 +39,14 @@ function deleteListBook(index) {
 createBook("poor dad", "robert", 134, "yes", 17);
 createBook("Alchemy", "caylo", 124, "yes", 117);
 createBook("atomic habit", "some one", 134, "no", 0);
+createBook("poor dad", "robert", 134, "yes", 17);
+createBook("Alchemy", "caylo", 124, "yes", 117);
+createBook("atomic habit", "some one", 134, "no", 0);
+createBook("Alchemy", "caylo", 124, "yes", 117);
+createBook("atomic habit", "some one", 134, "no", 0);
+createBook("poor dad", "robert", 134, "yes", 17);
+createBook("Alchemy", "caylo", 124, "yes", 117);
+createBook("atomic habit", "some one", 134, "no", 0);
 createBook("The  miracle of", "ahmed", 334, "no", 0);
 displayListBook();
 
