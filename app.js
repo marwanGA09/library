@@ -1,26 +1,4 @@
 const bookDisplay = document.querySelector(".book-display");
-// function Book(name, author, page, isRead, mark) {
-//   this.name = name;
-//   this.author = author;
-//   this.page = page;
-//   this.isRead = isRead;
-//   this.bookMark = mark;
-// }
-
-// const listOfBook = [];
-
-// function createBook(n, a, p, r, m) {
-//   let book = new Book(n, a, p, r, m);
-//   listOfBook.push(book);
-// }
-
-// function displayListBook() {
-//   listOfBook.forEach((obj, ind) => createCard(obj, ind));
-// }
-
-// function deleteListBook(index) {
-//   listOfBook.splice(index, 1);
-// }
 
 class CreateBook {
   static #listOfBook = [];
@@ -47,14 +25,22 @@ class CreateBook {
   }
 }
 
-new CreateBook("poor dad", "robert", 134, "yes", 17);
-new CreateBook("Alchemy", "caylo", 124, "yes", 117);
-new CreateBook("atomic habit", "some one", 134, "no", 0);
-new CreateBook("poor dad", "robert", 134, "yes", 17);
-new CreateBook("Alchemy", "caylo", 124, "yes", 117);
-new CreateBook("atomic habit", "some one", 134, "no", 0);
-new CreateBook("Alchemy", "caylo", 124, "yes", 117);
-new CreateBook("atomic habit", "some one", 134, "no", 0);
+new CreateBook("JavaScript: The Good Parts", "Douglas Crockford", 176, "no", 0);
+new CreateBook(
+  "Harry Potter and the Philosopher's Stone",
+  "J.K. Rowling",
+  336,
+  "yes",
+  25
+);
+new CreateBook("The Catcher in the Rye", "J.D. Salinger", 224, "no", 0);
+new CreateBook("To Kill a Mockingbird", "Harper Lee", 281, "yes", 22);
+new CreateBook("1984", "George Orwell", 328, "yes", 20);
+new CreateBook("The Great Gatsby", "F. Scott Fitzgerald", 180, "yes", 21);
+new CreateBook("Pride and Prejudice", "Jane Austen", 279, "no", 19);
+new CreateBook("The Hobbit", "J.R.R. Tolkien", 310, "yes", 24);
+new CreateBook("The Alchemist", "Paulo Coelho", 208, "no", 16);
+
 CreateBook.displayListBook();
 
 const addBook = document.querySelector(".add-book");
@@ -140,7 +126,7 @@ submitBtn.addEventListener("click", (ev) => {
   ) {
     ev.preventDefault();
   } else {
-    // console.log(form)
+    console.log(form);
     const data = new FormData(form); // create array of object
     // console.log(data);
     // let create object from submit data of form
