@@ -1,14 +1,25 @@
-$color-primary: #9b815f;
-$color-primary-light: #deb887;
-$color-primary-dark: #6f5c44;
+$color-primary: #ff6347;
+$color-primary-light: #ff6347;
+$color-primary-dark: #ff6347;
 
-$color-secondary: #008000;
-$color-secondary-light: #339933;
-$color-secondary-dark: #005a00;
+$color-secondary: #0077cc;
+$color-secondary-light: #0077cc;
+$color-secondary-dark: #0077cc;
 
 $color-tertiary: #da17da;
 $color-tertiary-light: #991099;
 $color-tertiary-dark: #e55de5;
+
+// Primary Color: #0077cc (Ocean Blue)
+// Accent Color: #ffcc66 (Sandy Beige)
+// Forest Green and Earthy Brown:
+
+// Primary Color: #228B22 (Forest Green)
+// Accent Color: #8B4513 (Earthy Brown)
+// Sunset Orange and Soft Gray:
+
+// Primary Color: #FF6347 (Sunset Orange)
+// Accent Color: #A9A9A9 (Soft Gray)
 
 * {
   padding: 0;
@@ -22,6 +33,7 @@ $color-tertiary-dark: #e55de5;
 
 body {
   font-size: 1.6rem;
+  background-color: #8b451363;
 }
 
 // style modal
@@ -175,11 +187,12 @@ body {
   justify-content: space-evenly;
   gap: 3rem;
   .card {
+    background-color: #da17da52;
     font-size: 2rem;
     text-transform: capitalize;
     padding: 2rem 4rem;
     align-items: center;
-    background-color: #fff;
+    // background-color: #fff;
     border-radius: 1rem;
     box-shadow: 0 0 1rem 0.2rem rgba(0, 0, 0, 0.695);
     display: flex;

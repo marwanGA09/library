@@ -10,6 +10,7 @@
 
 body {
   font-size: 1.6rem;
+  background-color: rgba(139, 69, 19, 0.3882352941);
 }
 
 .modal {
@@ -34,7 +35,7 @@ body {
   cursor: pointer;
 }
 .modal::backdrop {
-  background-color: rgba(222, 184, 135, 0.75);
+  background-color: rgba(255, 99, 71, 0.75);
 }
 .modal form {
   display: flex;
@@ -43,7 +44,7 @@ body {
   font-size: 2rem;
 }
 .modal form label {
-  border-bottom: 0.2rem solid #9b815f;
+  border-bottom: 0.2rem solid #ff6347;
   width: max-content;
 }
 .modal form label .error {
@@ -57,7 +58,7 @@ body {
   width: 80%;
   align-self: flex-end;
   padding: 0.3rem 0.6rem;
-  border: 0.2rem solid rgba(51, 153, 51, 0.6);
+  border: 0.2rem solid rgba(0, 119, 204, 0.6);
   outline: 0;
   background-color: rgba(144, 144, 41, 0.2431372549);
   border-radius: 0.4rem;
@@ -68,7 +69,7 @@ body {
   width: max-content;
   align-self: center;
   border-radius: 4rem;
-  background-color: #deb887;
+  background-color: #ff6347;
   cursor: pointer;
 }
 
@@ -79,7 +80,7 @@ body {
 }
 .container .header {
   grid-column: span 2;
-  background-color: rgba(51, 153, 51, 0.8);
+  background-color: rgba(0, 119, 204, 0.8);
   padding: 0.8rem;
   text-align: center;
   padding: 0.8rem;
@@ -92,7 +93,7 @@ body {
   width: max-content;
   font-size: 6.6rem;
   font-weight: 900;
-  color: #deb887;
+  color: #ff6347;
   position: relative;
   transition: all 0.7s ease-out;
   cursor: pointer;
@@ -118,7 +119,7 @@ body {
   content: "Add";
 }
 .container .sidebar {
-  background-color: #dad0c3;
+  background-color: #ffedea;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -144,11 +145,11 @@ body {
   gap: 3rem;
 }
 .book-display .card {
+  background-color: rgba(218, 23, 218, 0.3215686275);
   font-size: 2rem;
   text-transform: capitalize;
   padding: 2rem 4rem;
   align-items: center;
-  background-color: #fff;
   border-radius: 1rem;
   box-shadow: 0 0 1rem 0.2rem rgba(0, 0, 0, 0.695);
   display: flex;
@@ -168,7 +169,7 @@ body {
 .book-display .card .delete-btn {
   position: absolute;
   bottom: 3rem;
-  background-color: #deb887;
+  background-color: #ff6347;
   color: white;
   padding: 1rem 2.5rem;
   border: 0;
@@ -177,7 +178,7 @@ body {
   font-weight: bold;
 }
 .book-display .card .delete-btn:active {
-  background-color: #d3a05f;
+  background-color: #ff3814;
 }
 
 /*# sourceMappingURL=style.css.map */
