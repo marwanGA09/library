@@ -1,36 +1,61 @@
 const bookDisplay = document.querySelector(".book-display");
-function Book(name, author, page, isRead, mark) {
-  this.name = name;
-  this.author = author;
-  this.page = page;
-  this.isRead = isRead;
-  this.bookMark = mark;
+// function Book(name, author, page, isRead, mark) {
+//   this.name = name;
+//   this.author = author;
+//   this.page = page;
+//   this.isRead = isRead;
+//   this.bookMark = mark;
+// }
+
+// const listOfBook = [];
+
+// function createBook(n, a, p, r, m) {
+//   let book = new Book(n, a, p, r, m);
+//   listOfBook.push(book);
+// }
+
+// function displayListBook() {
+//   listOfBook.forEach((obj, ind) => createCard(obj, ind));
+// }
+
+// function deleteListBook(index) {
+//   listOfBook.splice(index, 1);
+// }
+
+class CreateBook {
+  static #listOfBook = [];
+
+  constructor(name, author, page, isRead, mark) {
+    this.name = name;
+    this.author = author;
+    this.page = page;
+    this.isRead = isRead;
+    this.bookMark = mark;
+    CreateBook.addToListOfBook(this);
+  }
+
+  static addToListOfBook(obj) {
+    CreateBook.#listOfBook.push(obj);
+  }
+
+  static displayListBook() {
+    CreateBook.#listOfBook.forEach((obj, ind) => createCard(obj, ind));
+  }
+
+  static deleteListBook(index) {
+    CreateBook.#listOfBook.splice(index, 1);
+  }
 }
 
-const listOfBook = [];
-
-function createBook(n, a, p, r, m) {
-  let book = new Book(n, a, p, r, m);
-  listOfBook.push(book);
-}
-
-function displayListBook() {
-  listOfBook.forEach((obj, ind) => createCard(obj, ind));
-}
-
-function deleteListBook(index) {
-  console.log(listOfBook.splice(index, 1));
-}
-
-createBook("poor dad", "robert", 134, "yes", 17);
-createBook("Alchemy", "caylo", 124, "yes", 117);
-createBook("atomic habit", "some one", 134, "no", 0);
-createBook("poor dad", "robert", 134, "yes", 17);
-createBook("Alchemy", "caylo", 124, "yes", 117);
-createBook("atomic habit", "some one", 134, "no", 0);
-createBook("Alchemy", "caylo", 124, "yes", 117);
-createBook("atomic habit", "some one", 134, "no", 0);
-displayListBook();
+new CreateBook("poor dad", "robert", 134, "yes", 17);
+new CreateBook("Alchemy", "caylo", 124, "yes", 117);
+new CreateBook("atomic habit", "some one", 134, "no", 0);
+new CreateBook("poor dad", "robert", 134, "yes", 17);
+new CreateBook("Alchemy", "caylo", 124, "yes", 117);
+new CreateBook("atomic habit", "some one", 134, "no", 0);
+new CreateBook("Alchemy", "caylo", 124, "yes", 117);
+new CreateBook("atomic habit", "some one", 134, "no", 0);
+CreateBook.displayListBook();
 
 const addBook = document.querySelector(".add-book");
 const modal = document.querySelector(".modal");
@@ -115,22 +140,23 @@ submitBtn.addEventListener("click", (ev) => {
   ) {
     ev.preventDefault();
   } else {
+    // console.log(form)
     const data = new FormData(form); // create array of object
-
+    // console.log(data);
     // let create object from submit data of form
-    let obj = Object.create(Book);
-    console.log(obj);
-    obj = Object.fromEntries(data);
-    const values = Object.values(obj);
-    createBook(...values);
+    // let obj = Object.create(Book);
+    // console.log(obj);
+    // obj = Object.fromEntries(data);
+    const values = Object.values(Object.fromEntries(data));
+    new CreateBook(...values);
 
     removeAllChild();
-    displayListBook();
+    CreateBook.displayListBook();
 
     // clear up the input
     const input = document.querySelectorAll('input[type="text"]');
     input.forEach((inp) => {
-      console.log(inp);
+      // console.log(inp);
       inp.value = "";
     });
     pageNo.value = "";
@@ -191,8 +217,8 @@ function removeAllChild() {
 
 bookDisplay.addEventListener("click", (ev) => {
   if (ev.target.dataset.index != undefined) {
-    listOfBook.splice(ev.target.dataset.index, 1);
+    CreateBook.deleteListBook(ev.target.dataset.index);
     removeAllChild();
-    displayListBook();
+    CreateBook.displayListBook();
   }
 });
