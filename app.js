@@ -37,8 +37,10 @@ class DisplayBooks {
 
 class CreateBook {
   static #listOfBook = [];
-
+  static totalBook = 0;
   constructor(name, author, page, isRead, mark) {
+    CreateBook.totalBook += 1;
+    this.number = CreateBook.totalBook;
     this.name = name;
     this.author = author;
     this.page = page;
@@ -242,3 +244,39 @@ domMain.bookDisplay.addEventListener("click", (ev) => {
     DisplayBooks.displayListBook(CreateBook.getBookList());
   }
 });
+
+const arr = CreateBook.getBookList();
+const newArray = arr;
+
+const sortPage = arr.sort((a, b) => {
+  return a.page - b.page;
+});
+// const sortTime = arr.sort((a, b) => {
+//   return a.number - b.number;
+// });
+
+console.log(arr);
+// const sortName = arr.sort((a, b) => {
+//   if (a.name > b.name) {
+//     return 1;
+//   } else if (a.name < b.name) {
+//     return -1;
+//   } else {
+//     return 0;
+//   }
+// });
+
+// const sortAuthor = arr.sort((a, b) => {
+//   if (a.author > b.author) {
+//     return 1;
+//   } else if (a.author < b.author) {
+//     return -1;
+//   } else {
+//     return 0;
+//   }
+// });
+
+const readBook = arr.filter((a) => a.isRead === "yes");
+const unreadBook = arr.filter((a) => a.isRead === "no");
+console.log(arr);
+// console.log(CreateBook.getBookList());
