@@ -9,6 +9,20 @@ class DomMain {
   }
 }
 
+class DomModal {
+  constructor() {
+    this.bookMark = document.querySelector("#bookmark");
+    this.pageNo = document.querySelector("#page-no");
+    this.read = document.querySelector("#read");
+    this.bookName = document.querySelector("#b-name");
+    this.author = document.querySelector("#author");
+    this.errorName = document.querySelector("label[for='b-name'] .error");
+    this.errorAuthor = document.querySelector("label[for='author'] .error");
+    this.errorPage = document.querySelector("label[for='page-no'] .error");
+    this.errorBookmark = document.querySelector("label[for='bookmark'] .error");
+  }
+}
+
 const domMain = new DomMain();
 
 class DisplayBooks {
@@ -73,71 +87,68 @@ domMain.cancelModal.addEventListener("click", () => {
 });
 
 domMain.submitBtn.addEventListener("click", (ev) => {
-  const bookMark = document.querySelector("#bookmark");
-  const pageNo = document.querySelector("#page-no");
-  const read = document.querySelector("#read");
-  let bookName = document.querySelector("#b-name");
-  let author = document.querySelector("#author");
+  const domModal = new DomModal();
 
   const text = /^[A-Za-z]+$/;
   const number = /^\d+$/;
-  if (read.value == "no") {
-    bookMark.value = 0;
+  if (domModal.read.value == "no") {
+    domModal.bookMark.value = 0;
   }
 
-  const errorName = document.querySelector("label[for='b-name'] .error");
-  const errorAuthor = document.querySelector("label[for='author'] .error");
-  const errorPage = document.querySelector("label[for='page-no'] .error");
-  const errorBookmark = document.querySelector("label[for='bookmark'] .error");
-
-  if (!text.test(bookName.value)) {
-    errorName.textContent = "Book name should be character";
-    bookName.style.border = `0.2rem solid rgba(219, 60, 60, 0.6)`;
+  if (!text.test(domModal.bookName.value)) {
+    domModal.errorName.textContent = "Book name should be character";
+    domModal.bookName.style.border = `0.2rem solid rgba(219, 60, 60, 0.6)`;
   } else {
-    bookName.style.border = `0.2rem solid #339933`;
-    errorName.textContent = "";
+    domModal.bookName.style.border = `0.2rem solid #339933`;
+    domModal.errorName.textContent = "";
   }
 
-  if (!text.test(author.value)) {
-    errorAuthor.textContent = "Author name should be character";
-    author.style.border = `0.2rem solid rgba(219, 60, 60, 0.6)`;
+  if (!text.test(domModal.author.value)) {
+    domModal.errorAuthor.textContent = "Author name should be character";
+    domModal.author.style.border = `0.2rem solid rgba(219, 60, 60, 0.6)`;
   } else {
-    author.style.border = `0.2rem solid #339933`;
-    errorAuthor.textContent = "";
+    domModal.author.style.border = `0.2rem solid #339933`;
+    domModal.errorAuthor.textContent = "";
   }
 
-  if (!number.test(bookMark.value)) {
-    errorBookmark.textContent = "Bookmark should be number";
-    bookMark.style.border = `0.2rem solid rgba(219, 60, 60, 0.6)`;
+  if (!number.test(domModal.bookMark.value)) {
+    domModal.errorBookmark.textContent = "Bookmark should be number";
+    domModal.bookMark.style.border = `0.2rem solid rgba(219, 60, 60, 0.6)`;
   } else {
-    errorBookmark.textContent = "";
-    bookMark.style.border = `0.2rem solid #339933`;
+    domModal.errorBookmark.textContent = "";
+    domModal.bookMark.style.border = `0.2rem solid #339933`;
   }
 
-  if (!number.test(pageNo.value)) {
-    errorPage.textContent = "Page should be number";
-    pageNo.style.border = `0.2rem solid rgba(219, 60, 60, 0.6)`;
+  if (!number.test(domModal.pageNo.value)) {
+    domModal.errorPage.textContent = "Page should be number";
+    domModal.pageNo.style.border = `0.2rem solid rgba(219, 60, 60, 0.6)`;
   } else {
-    errorPage.textContent = "";
-    pageNo.style.border = `0.2rem solid #339933`;
+    domModal.errorPage.textContent = "";
+    domModal.pageNo.style.border = `0.2rem solid #339933`;
   }
 
   if (
-    bookMark.value > pageNo.value &&
-    number.test(bookMark.value) &&
-    bookMark === 0
+    domModal.bookMark.value > domModal.pageNo.value &&
+    number.test(domModal.bookMark.value) &&
+    domModal.bookMark === 0
   ) {
-    errorBookmark.textContent = "Bookmark must be less than page number";
-    bookMark.style.border = `0.2rem solid rgba(219, 60, 60, 0.6)`;
-  } else if (bookMark.value <= pageNo.value && number.test(bookMark.value)) {
-    errorBookmark.textContent = "";
-    bookMark.style.border = `0.2rem solid #339933`;
+    domModal.errorBookmark.textContent =
+      "Bookmark must be less than page number";
+    domModal.bookMark.style.border = `0.2rem solid rgba(219, 60, 60, 0.6)`;
+  } else if (
+    domModal.bookMark.value <= domModal.pageNo.value &&
+    number.test(domModal.bookMark.value)
+  ) {
+    domModal.errorBookmark.textContent = "";
+    domModal.bookMark.style.border = `0.2rem solid #339933`;
   }
 
   if (
-    !(text.test(bookName.value) && text.test(author.value)) ||
-    bookMark.value > pageNo.value ||
-    !(number.test(bookMark.value) && number.test(pageNo.value))
+    !(text.test(domModal.bookName.value) && text.test(domModal.author.value)) ||
+    domModal.bookMark.value > domModal.pageNo.value ||
+    !(
+      number.test(domModal.bookMark.value) && number.test(domModal.pageNo.value)
+    )
   ) {
     ev.preventDefault();
   } else {
@@ -159,7 +170,7 @@ domMain.submitBtn.addEventListener("click", (ev) => {
       // console.log(inp);
       inp.value = "";
     });
-    pageNo.value = "";
+    domModal.pageNo.value = "";
     domMain.modal.close();
   }
 });
