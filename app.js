@@ -10,6 +10,45 @@ function createViews() {
   };
 }
 
+function sortBook() {
+  return {
+    author: function (listOfBook) {
+      listOfBook.sort((a, b) => {
+        if (a.author > b.author) {
+          return 1;
+        } else if (a.author < b.author) {
+          return -1;
+        } else {
+          return 0;
+        }
+      });
+    },
+    book: function (listOfBook) {
+      listOfBook.sort((a, b) => {
+        if (a.name > b.name) {
+          return 1;
+        } else if (a.name < b.name) {
+          return -1;
+        } else {
+          return 0;
+        }
+      });
+    },
+    page: function (listOfBook) {
+      listOfBook.sort((a, b) => {
+        return a.page - b.page;
+      });
+    },
+    time: function (listOfBook) {
+      listOfBook.sort((a, b) => {
+        return a.number - b.number;
+      });
+    },
+  };
+}
+let sortingObject = sortBook();
+let currentSorting = "time";
+
 class DomMain {
   constructor() {
     this.bookDisplay = document.querySelector(".book-display");
@@ -19,6 +58,7 @@ class DomMain {
     this.form = document.querySelector(".form");
     this.submitBtn = document.querySelector(".submit-btn");
     this.view = document.querySelector("#view");
+    this.sorting = document.querySelector("#sort");
   }
 }
 
@@ -40,6 +80,7 @@ const domMain = new DomMain();
 
 class DisplayBooks {
   static displayListBook(listOfBook) {
+    sortingObject[currentSorting](listOfBook);
     listOfBook.forEach((obj, ind) => createCard(obj, ind));
   }
 }
@@ -263,36 +304,18 @@ domMain.bookDisplay.addEventListener("click", (ev) => {
 // const arr = CreateBook.getBookList();
 // const newArray = arr;
 
-// const sortPage = arr.sort((a, b) => {
-//   return a.page - b.page;
-// });
-// const sortTime = arr.sort((a, b) => {
-//   return a.number - b.number;
-// });
-
 // console.log(arr);
-// const sortName = arr.sort((a, b) => {
-//   if (a.name > b.name) {
-//     return 1;
-//   } else if (a.name < b.name) {
-//     return -1;
-//   } else {
-//     return 0;
-//   }
-// });
-
-// const sortAuthor = arr.sort((a, b) => {
-//   if (a.author > b.author) {
-//     return 1;
-//   } else if (a.author < b.author) {
-//     return -1;
-//   } else {
-//     return 0;
-//   }
-// });
 
 domMain.view.addEventListener("change", (ev) => {
   currentView = ev.target.value;
+  removeAllChild();
+  DisplayBooks.displayListBook(views[currentView]);
+});
+
+// const sor = ;
+
+domMain.sorting.addEventListener("change", (ev) => {
+  currentSorting = ev.target.value;
   removeAllChild();
   DisplayBooks.displayListBook(views[currentView]);
 });
