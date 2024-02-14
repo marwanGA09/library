@@ -2,6 +2,14 @@ function regExpTest(regexp, data) {
   return regexp.test(data.value);
 }
 
+function createViews() {
+  return {
+    all: CreateBook.getBookList(),
+    read: CreateBook.getBookList().filter((a) => a.isRead === "yes"),
+    unread: CreateBook.getBookList().filter((a) => a.isRead === "no"),
+  };
+}
+
 class DomMain {
   constructor() {
     this.bookDisplay = document.querySelector(".book-display");
@@ -10,6 +18,7 @@ class DomMain {
     this.cancelModal = document.querySelector(".cancel-modal");
     this.form = document.querySelector(".form");
     this.submitBtn = document.querySelector(".submit-btn");
+    this.view = document.querySelector("#view");
   }
 }
 
@@ -82,7 +91,11 @@ new CreateBook("Pride and Prejudice", "Jane Austen", 279, "no", 19);
 new CreateBook("The Hobbit", "J.R.R. Tolkien", 310, "yes", 24);
 new CreateBook("The Alchemist", "Paulo Coelho", 208, "no", 16);
 
-DisplayBooks.displayListBook(CreateBook.getBookList());
+let currentView = "all";
+
+let views = createViews();
+
+DisplayBooks.displayListBook(views[currentView]);
 
 domMain.addBook.addEventListener("click", () => {
   domMain.modal.showModal();
@@ -171,9 +184,9 @@ domMain.submitBtn.addEventListener("click", (ev) => {
     // obj = Object.fromEntries(data);
     const values = Object.values(Object.fromEntries(data));
     new CreateBook(...values);
-
+    views = createViews();
     removeAllChild();
-    DisplayBooks.displayListBook(CreateBook.getBookList());
+    DisplayBooks.displayListBook(views[currentView]);
 
     // clear up the input
     const input = document.querySelectorAll('input[type="text"]');
@@ -238,24 +251,26 @@ function removeAllChild() {
 // delete cards when delete button is clicked
 
 domMain.bookDisplay.addEventListener("click", (ev) => {
-  if (ev.target.dataset.index != undefined) {
+  if (ev.target.dataset.index != undefined && domMain.view.value === "all") {
+    // console.log(ev.target.dataset.index);
     CreateBook.deleteListBook(ev.target.dataset.index);
+    views = createViews();
     removeAllChild();
-    DisplayBooks.displayListBook(CreateBook.getBookList());
+    DisplayBooks.displayListBook(views[currentView]);
   }
 });
 
-const arr = CreateBook.getBookList();
-const newArray = arr;
+// const arr = CreateBook.getBookList();
+// const newArray = arr;
 
-const sortPage = arr.sort((a, b) => {
-  return a.page - b.page;
-});
+// const sortPage = arr.sort((a, b) => {
+//   return a.page - b.page;
+// });
 // const sortTime = arr.sort((a, b) => {
 //   return a.number - b.number;
 // });
 
-console.log(arr);
+// console.log(arr);
 // const sortName = arr.sort((a, b) => {
 //   if (a.name > b.name) {
 //     return 1;
@@ -276,7 +291,8 @@ console.log(arr);
 //   }
 // });
 
-const readBook = arr.filter((a) => a.isRead === "yes");
-const unreadBook = arr.filter((a) => a.isRead === "no");
-console.log(arr);
-// console.log(CreateBook.getBookList());
+domMain.view.addEventListener("change", (ev) => {
+  currentView = ev.target.value;
+  removeAllChild();
+  DisplayBooks.displayListBook(views[currentView]);
+});
