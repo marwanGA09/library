@@ -1,3 +1,7 @@
+function regExpTest(regexp, data) {
+  return regexp.test(data.value);
+}
+
 class DomMain {
   constructor() {
     this.bookDisplay = document.querySelector(".book-display");
@@ -95,7 +99,7 @@ domMain.submitBtn.addEventListener("click", (ev) => {
     domModal.bookMark.value = 0;
   }
 
-  if (!text.test(domModal.bookName.value)) {
+  if (!regExpTest(text, domModal.bookName)) {
     domModal.errorName.textContent = "Book name should be character";
     domModal.bookName.style.border = `0.2rem solid rgba(219, 60, 60, 0.6)`;
   } else {
@@ -103,7 +107,7 @@ domMain.submitBtn.addEventListener("click", (ev) => {
     domModal.errorName.textContent = "";
   }
 
-  if (!text.test(domModal.author.value)) {
+  if (!regExpTest(text, domModal.author)) {
     domModal.errorAuthor.textContent = "Author name should be character";
     domModal.author.style.border = `0.2rem solid rgba(219, 60, 60, 0.6)`;
   } else {
@@ -111,7 +115,7 @@ domMain.submitBtn.addEventListener("click", (ev) => {
     domModal.errorAuthor.textContent = "";
   }
 
-  if (!number.test(domModal.bookMark.value)) {
+  if (!regExpTest(number, domModal.bookMark)) {
     domModal.errorBookmark.textContent = "Bookmark should be number";
     domModal.bookMark.style.border = `0.2rem solid rgba(219, 60, 60, 0.6)`;
   } else {
@@ -119,7 +123,7 @@ domMain.submitBtn.addEventListener("click", (ev) => {
     domModal.bookMark.style.border = `0.2rem solid #339933`;
   }
 
-  if (!number.test(domModal.pageNo.value)) {
+  if (!regExpTest(number, domModal.pageNo)) {
     domModal.errorPage.textContent = "Page should be number";
     domModal.pageNo.style.border = `0.2rem solid rgba(219, 60, 60, 0.6)`;
   } else {
@@ -129,7 +133,7 @@ domMain.submitBtn.addEventListener("click", (ev) => {
 
   if (
     domModal.bookMark.value > domModal.pageNo.value &&
-    number.test(domModal.bookMark.value) &&
+    regExpTest(number, domModal.bookMark) &&
     domModal.bookMark === 0
   ) {
     domModal.errorBookmark.textContent =
@@ -137,17 +141,20 @@ domMain.submitBtn.addEventListener("click", (ev) => {
     domModal.bookMark.style.border = `0.2rem solid rgba(219, 60, 60, 0.6)`;
   } else if (
     domModal.bookMark.value <= domModal.pageNo.value &&
-    number.test(domModal.bookMark.value)
+    regExpTest(number, domModal.bookMark)
   ) {
     domModal.errorBookmark.textContent = "";
     domModal.bookMark.style.border = `0.2rem solid #339933`;
   }
 
   if (
-    !(text.test(domModal.bookName.value) && text.test(domModal.author.value)) ||
+    !(
+      regExpTest(text, domModal.bookName) && regExpTest(text, domModal.author)
+    ) ||
     domModal.bookMark.value > domModal.pageNo.value ||
     !(
-      number.test(domModal.bookMark.value) && number.test(domModal.pageNo.value)
+      regExpTest(number, domModal.bookMark) &&
+      regExpTest(number, domModal.pageNo)
     )
   ) {
     ev.preventDefault();
