@@ -1,4 +1,15 @@
-const bookDisplay = document.querySelector(".book-display");
+class DomMain {
+  constructor() {
+    this.bookDisplay = document.querySelector(".book-display");
+    this.addBook = document.querySelector(".add-book");
+    this.modal = document.querySelector(".modal");
+    this.cancelModal = document.querySelector(".cancel-modal");
+    this.form = document.querySelector(".form");
+    this.submitBtn = document.querySelector(".submit-btn");
+  }
+}
+
+const domMain = new DomMain();
 
 class DisplayBooks {
   static displayListBook(listOfBook) {
@@ -53,21 +64,15 @@ new CreateBook("The Alchemist", "Paulo Coelho", 208, "no", 16);
 
 DisplayBooks.displayListBook(CreateBook.getBookList());
 
-const addBook = document.querySelector(".add-book");
-const modal = document.querySelector(".modal");
-const cancelModal = document.querySelector(".cancel-modal");
-const form = document.querySelector(".form");
-
-addBook.addEventListener("click", () => {
-  modal.showModal();
+domMain.addBook.addEventListener("click", () => {
+  domMain.modal.showModal();
 });
 
-cancelModal.addEventListener("click", () => {
-  modal.close();
+domMain.cancelModal.addEventListener("click", () => {
+  domMain.modal.close();
 });
 
-const submitBtn = document.querySelector(".submit-btn");
-submitBtn.addEventListener("click", (ev) => {
+domMain.submitBtn.addEventListener("click", (ev) => {
   const bookMark = document.querySelector("#bookmark");
   const pageNo = document.querySelector("#page-no");
   const read = document.querySelector("#read");
@@ -136,7 +141,7 @@ submitBtn.addEventListener("click", (ev) => {
   ) {
     ev.preventDefault();
   } else {
-    const data = new FormData(form); // create array of object
+    const data = new FormData(domMain.form); // create array of object
     // console.log(data);
     // let create object from submit data of form
     // let obj = Object.create(Book);
@@ -155,7 +160,7 @@ submitBtn.addEventListener("click", (ev) => {
       inp.value = "";
     });
     pageNo.value = "";
-    modal.close();
+    domMain.modal.close();
   }
 });
 
@@ -198,19 +203,19 @@ function createCard(obj, ind) {
   deleteBtn.dataset.index = ind;
   card.append(deleteBtn);
 
-  bookDisplay.append(card);
+  domMain.bookDisplay.append(card);
 }
 
 function removeAllChild() {
   const div = document.querySelectorAll(".book-display .card");
   div.forEach((el) => {
-    bookDisplay.removeChild(el);
+    domMain.bookDisplay.removeChild(el);
   });
 }
 
 // delete cards when delete button is clicked
 
-bookDisplay.addEventListener("click", (ev) => {
+domMain.bookDisplay.addEventListener("click", (ev) => {
   if (ev.target.dataset.index != undefined) {
     CreateBook.deleteListBook(ev.target.dataset.index);
     removeAllChild();
