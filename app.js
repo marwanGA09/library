@@ -1,5 +1,11 @@
 const bookDisplay = document.querySelector(".book-display");
 
+class DisplayBooks {
+  static displayListBook(listOfBook) {
+    listOfBook.forEach((obj, ind) => createCard(obj, ind));
+  }
+}
+
 class CreateBook {
   static #listOfBook = [];
 
@@ -12,13 +18,17 @@ class CreateBook {
     CreateBook.addToListOfBook(this);
   }
 
+  static getBookList() {
+    return CreateBook.#listOfBook;
+  }
+
   static addToListOfBook(obj) {
     CreateBook.#listOfBook.push(obj);
   }
 
-  static displayListBook() {
-    CreateBook.#listOfBook.forEach((obj, ind) => createCard(obj, ind));
-  }
+  // static displayListBook() {
+  //   CreateBook.#listOfBook.forEach((obj, ind) => createCard(obj, ind));
+  // }
 
   static deleteListBook(index) {
     CreateBook.#listOfBook.splice(index, 1);
@@ -41,18 +51,18 @@ new CreateBook("Pride and Prejudice", "Jane Austen", 279, "no", 19);
 new CreateBook("The Hobbit", "J.R.R. Tolkien", 310, "yes", 24);
 new CreateBook("The Alchemist", "Paulo Coelho", 208, "no", 16);
 
-CreateBook.displayListBook();
+DisplayBooks.displayListBook(CreateBook.getBookList());
 
 const addBook = document.querySelector(".add-book");
 const modal = document.querySelector(".modal");
 const cancelModal = document.querySelector(".cancel-modal");
 const form = document.querySelector(".form");
 
-addBook.addEventListener("click", (ev) => {
+addBook.addEventListener("click", () => {
   modal.showModal();
 });
 
-cancelModal.addEventListener("click", (ev) => {
+cancelModal.addEventListener("click", () => {
   modal.close();
 });
 
@@ -126,7 +136,6 @@ submitBtn.addEventListener("click", (ev) => {
   ) {
     ev.preventDefault();
   } else {
-    console.log(form);
     const data = new FormData(form); // create array of object
     // console.log(data);
     // let create object from submit data of form
@@ -137,7 +146,7 @@ submitBtn.addEventListener("click", (ev) => {
     new CreateBook(...values);
 
     removeAllChild();
-    CreateBook.displayListBook();
+    DisplayBooks.displayListBook(CreateBook.getBookList());
 
     // clear up the input
     const input = document.querySelectorAll('input[type="text"]');
@@ -205,6 +214,6 @@ bookDisplay.addEventListener("click", (ev) => {
   if (ev.target.dataset.index != undefined) {
     CreateBook.deleteListBook(ev.target.dataset.index);
     removeAllChild();
-    CreateBook.displayListBook();
+    DisplayBooks.displayListBook(CreateBook.getBookList());
   }
 });
