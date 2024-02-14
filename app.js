@@ -95,40 +95,42 @@ domMain.submitBtn.addEventListener("click", (ev) => {
 
   const text = /^[A-Za-z]+$/;
   const number = /^\d+$/;
+  const redMessage = `0.2rem solid rgba(219, 60, 60, 0.6)`;
+  const greenMessage = `0.2rem solid #339933`;
   if (domModal.read.value == "no") {
     domModal.bookMark.value = 0;
   }
 
   if (!regExpTest(text, domModal.bookName)) {
     domModal.errorName.textContent = "Book name should be character";
-    domModal.bookName.style.border = `0.2rem solid rgba(219, 60, 60, 0.6)`;
+    domModal.bookName.style.border = redMessage;
   } else {
-    domModal.bookName.style.border = `0.2rem solid #339933`;
+    domModal.bookName.style.border = greenMessage;
     domModal.errorName.textContent = "";
   }
 
   if (!regExpTest(text, domModal.author)) {
     domModal.errorAuthor.textContent = "Author name should be character";
-    domModal.author.style.border = `0.2rem solid rgba(219, 60, 60, 0.6)`;
+    domModal.author.style.border = redMessage;
   } else {
-    domModal.author.style.border = `0.2rem solid #339933`;
+    domModal.author.style.border = greenMessage;
     domModal.errorAuthor.textContent = "";
   }
 
   if (!regExpTest(number, domModal.bookMark)) {
     domModal.errorBookmark.textContent = "Bookmark should be number";
-    domModal.bookMark.style.border = `0.2rem solid rgba(219, 60, 60, 0.6)`;
+    domModal.bookMark.style.border = redMessage;
   } else {
     domModal.errorBookmark.textContent = "";
-    domModal.bookMark.style.border = `0.2rem solid #339933`;
+    domModal.bookMark.style.border = greenMessage;
   }
 
   if (!regExpTest(number, domModal.pageNo)) {
     domModal.errorPage.textContent = "Page should be number";
-    domModal.pageNo.style.border = `0.2rem solid rgba(219, 60, 60, 0.6)`;
+    domModal.pageNo.style.border = redMessage;
   } else {
     domModal.errorPage.textContent = "";
-    domModal.pageNo.style.border = `0.2rem solid #339933`;
+    domModal.pageNo.style.border = greenMessage;
   }
 
   if (
@@ -138,13 +140,13 @@ domMain.submitBtn.addEventListener("click", (ev) => {
   ) {
     domModal.errorBookmark.textContent =
       "Bookmark must be less than page number";
-    domModal.bookMark.style.border = `0.2rem solid rgba(219, 60, 60, 0.6)`;
+    domModal.bookMark.style.border = redMessage;
   } else if (
     domModal.bookMark.value <= domModal.pageNo.value &&
     regExpTest(number, domModal.bookMark)
   ) {
     domModal.errorBookmark.textContent = "";
-    domModal.bookMark.style.border = `0.2rem solid #339933`;
+    domModal.bookMark.style.border = greenMessage;
   }
 
   if (
