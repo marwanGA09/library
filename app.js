@@ -206,7 +206,7 @@ function createCard(obj, ind) {
   const div = document.createElement("div");
   const read = document.createElement("p");
   read.innerHTML = `Have you read?: <span>${
-    obj.isRead == "yes" ? "👍" : "👎"
+    obj.isRead == "yes" ? "✅" : "❌"
   }</span>`;
   read.classList.add("card__read");
   div.append(read);

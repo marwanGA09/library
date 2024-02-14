@@ -31,7 +31,6 @@ body {
   position: absolute;
   top: 1rem;
   right: 1.6rem;
-  transform: rotate(45deg);
   cursor: pointer;
 }
 .modal::backdrop {
