@@ -16,7 +16,6 @@
           type="text"
           name="b-name"
           id="b-name"
-          pattern="^[A-Za-z]+$"
           placeholder="Book name"
           required
         />
@@ -25,7 +24,6 @@
           type="text"
           name="author"
           id="author"
-          pattern="^[A-Za-z]+$"
           placeholder="Author name"
           required
         />
@@ -34,7 +32,6 @@
           type="tel"
           name="page-no"
           id="page-no"
-          pattern="^\d+$"
           placeholder="Total page"
           required
         />
@@ -45,13 +42,7 @@
           <option selected value="no">No I haven't read it</option>
         </select>
         <label for="bookmark">Book mark:<span class="error"></span></label
-        ><input
-          type="tel"
-          name="bookmark"
-          id="bookmark"
-          value="0"
-          pattern="^\d+$"
-        />
+        ><input type="tel" name="bookmark" id="bookmark" value="0" />
         <button type="submit" class="submit-btn">Add To Library</button>
       </form>
     </dialog>

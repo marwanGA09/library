@@ -133,7 +133,6 @@ new CreateBook("The Hobbit", "J.R.R. Tolkien", 310, "yes", 24);
 new CreateBook("The Alchemist", "Paulo Coelho", 208, "no", 16);
 
 let currentView = "all";
-
 let views = createViews();
 
 DisplayBooks.displayListBook(views[currentView]);
@@ -149,7 +148,8 @@ domMain.cancelModal.addEventListener("click", () => {
 domMain.submitBtn.addEventListener("click", (ev) => {
   const domModal = new DomModal();
 
-  const text = /^[A-Za-z]+$/;
+  const text = /^[A-Za-z]+\s+[A-Za-z]+$/;
+  // const text = /^[A-Za-z]+$/;
   const number = /^\d+$/;
   const redMessage = `0.2rem solid rgba(219, 60, 60, 0.6)`;
   const greenMessage = `0.2rem solid #339933`;
