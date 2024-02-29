@@ -89,6 +89,29 @@ body {
   gap: 0.5rem;
   box-shadow: inset 0 -1px 1px 0 black;
 }
+.container .header .viewing-option {
+  font-size: 2rem;
+  padding: 1rem 2rem;
+  position: absolute;
+  right: 5rem;
+  top: 2rem;
+  display: flex;
+  gap: 2rem;
+}
+.container .header .viewing-option label {
+  border-bottom: 2px solid rebeccapurple;
+}
+.container .header .viewing-option select {
+  border: none;
+  border-radius: 1rem;
+  width: 12rem;
+  background-color: rgb(195, 192, 192);
+}
+.container .header .viewing-option option {
+  background-color: #a8bdcc;
+  margin-top: 4rem;
+  font-size: 1.4rem;
+}
 .container .header .add-book {
   width: max-content;
   font-size: 6.6rem;
