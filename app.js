@@ -5,8 +5,8 @@ function regExpTest(regexp, data) {
 function createViews() {
   return {
     all: CreateBook.getBookList(),
-    read: CreateBook.getBookList().filter((a) => a.isRead === "yes"),
-    unread: CreateBook.getBookList().filter((a) => a.isRead === "no"),
+    read: CreateBook.getBookList().filter((a) => a.isRead === 'yes'),
+    unread: CreateBook.getBookList().filter((a) => a.isRead === 'no'),
   };
 }
 
@@ -47,28 +47,28 @@ function sortBook() {
   };
 }
 let sortingObject = sortBook();
-let currentSorting = "time";
+let currentSorting = 'time';
 
 class DomMain {
   constructor() {
-    this.bookDisplay = document.querySelector(".book-display");
-    this.addBook = document.querySelector(".add-book");
-    this.modal = document.querySelector(".modal");
-    this.cancelModal = document.querySelector(".cancel-modal");
-    this.form = document.querySelector(".form");
-    this.submitBtn = document.querySelector(".submit-btn");
-    this.view = document.querySelector("#view");
-    this.sorting = document.querySelector("#sort");
+    this.bookDisplay = document.querySelector('.book-display');
+    this.addBook = document.querySelector('.add-book');
+    this.modal = document.querySelector('.modal');
+    this.cancelModal = document.querySelector('.cancel-modal');
+    this.form = document.querySelector('.form');
+    this.submitBtn = document.querySelector('.submit-btn');
+    this.view = document.querySelector('#view');
+    this.sorting = document.querySelector('#sort');
   }
 }
 
 class DomModal {
   constructor() {
-    this.bookMark = document.querySelector("#bookmark");
-    this.pageNo = document.querySelector("#page-no");
-    this.read = document.querySelector("#read");
-    this.bookName = document.querySelector("#b-name");
-    this.author = document.querySelector("#author");
+    this.bookMark = document.querySelector('#bookmark');
+    this.pageNo = document.querySelector('#page-no');
+    this.read = document.querySelector('#read');
+    this.bookName = document.querySelector('#b-name');
+    this.author = document.querySelector('#author');
     this.errorName = document.querySelector("label[for='b-name'] .error");
     this.errorAuthor = document.querySelector("label[for='author'] .error");
     this.errorPage = document.querySelector("label[for='page-no'] .error");
@@ -116,76 +116,75 @@ class CreateBook {
   }
 }
 
-new CreateBook("JavaScript: The Good Parts", "Douglas Crockford", 176, "no", 0);
+new CreateBook('JavaScript: The Good Parts', 'Douglas Crockford', 176, 'no', 0);
 new CreateBook(
   "Harry Potter and the Philosopher's Stone",
-  "J.K. Rowling",
+  'J.K. Rowling',
   336,
-  "yes",
+  'yes',
   25
 );
-new CreateBook("The Catcher in the Rye", "J.D. Salinger", 224, "no", 0);
-new CreateBook("To Kill a Mockingbird", "Harper Lee", 281, "yes", 22);
-new CreateBook("1984", "George Orwell", 328, "yes", 20);
-new CreateBook("The Great Gatsby", "F. Scott Fitzgerald", 180, "yes", 21);
-new CreateBook("Pride and Prejudice", "Jane Austen", 279, "no", 19);
-new CreateBook("The Hobbit", "J.R.R. Tolkien", 310, "yes", 24);
-new CreateBook("The Alchemist", "Paulo Coelho", 208, "no", 16);
+new CreateBook('The Catcher in the Rye', 'J.D. Salinger', 224, 'no', 0);
+new CreateBook('To Kill a Mockingbird', 'Harper Lee', 281, 'yes', 22);
+new CreateBook('1984', 'George Orwell', 328, 'yes', 20);
+new CreateBook('The Great Gatsby', 'F. Scott Fitzgerald', 180, 'yes', 21);
+new CreateBook('Pride and Prejudice', 'Jane Austen', 279, 'no', 19);
+new CreateBook('The Hobbit', 'J.R.R. Tolkien', 310, 'yes', 24);
+new CreateBook('The Alchemist', 'Paulo Coelho', 208, 'no', 16);
 
-let currentView = "all";
+let currentView = 'all';
 let views = createViews();
 
 DisplayBooks.displayListBook(views[currentView]);
 
-domMain.addBook.addEventListener("click", () => {
+domMain.addBook.addEventListener('click', () => {
   domMain.modal.showModal();
 });
 
-domMain.cancelModal.addEventListener("click", () => {
+domMain.cancelModal.addEventListener('click', () => {
   domMain.modal.close();
 });
 
-domMain.submitBtn.addEventListener("click", (ev) => {
+domMain.submitBtn.addEventListener('click', (ev) => {
   const domModal = new DomModal();
 
-  const text = /^[A-Za-z]+\s+[A-Za-z]+$/;
-  // const text = /^[A-Za-z]+$/;
+  const text = /^[a-zA-Z][\w\s\-.,?!:;]+$/;
   const number = /^\d+$/;
   const redMessage = `0.2rem solid rgba(219, 60, 60, 0.6)`;
   const greenMessage = `0.2rem solid #339933`;
-  if (domModal.read.value == "no") {
+  if (domModal.read.value == 'no') {
     domModal.bookMark.value = 0;
   }
 
   if (!regExpTest(text, domModal.bookName)) {
-    domModal.errorName.textContent = "Book name should be character";
+    domModal.errorName.textContent = 'Book name should be character';
     domModal.bookName.style.border = redMessage;
   } else {
     domModal.bookName.style.border = greenMessage;
-    domModal.errorName.textContent = "";
+    domModal.errorName.textContent = '';
   }
 
   if (!regExpTest(text, domModal.author)) {
-    domModal.errorAuthor.textContent = "Author name should be character";
+    domModal.errorAuthor.textContent = 'Author name should be character';
     domModal.author.style.border = redMessage;
   } else {
     domModal.author.style.border = greenMessage;
-    domModal.errorAuthor.textContent = "";
+    domModal.errorAuthor.textContent = '';
   }
 
   if (!regExpTest(number, domModal.bookMark)) {
-    domModal.errorBookmark.textContent = "Bookmark should be number";
+    domModal.errorBookmark.textContent = 'Bookmark should be number';
     domModal.bookMark.style.border = redMessage;
   } else {
-    domModal.errorBookmark.textContent = "";
+    domModal.errorBookmark.textContent = '';
     domModal.bookMark.style.border = greenMessage;
   }
 
   if (!regExpTest(number, domModal.pageNo)) {
-    domModal.errorPage.textContent = "Page should be number";
+    domModal.errorPage.textContent = 'Page should be number';
     domModal.pageNo.style.border = redMessage;
   } else {
-    domModal.errorPage.textContent = "";
+    domModal.errorPage.textContent = '';
     domModal.pageNo.style.border = greenMessage;
   }
 
@@ -195,13 +194,13 @@ domMain.submitBtn.addEventListener("click", (ev) => {
     domModal.bookMark === 0
   ) {
     domModal.errorBookmark.textContent =
-      "Bookmark must be less than page number";
+      'Bookmark must be less than page number';
     domModal.bookMark.style.border = redMessage;
   } else if (
     domModal.bookMark.value <= domModal.pageNo.value &&
     regExpTest(number, domModal.bookMark)
   ) {
-    domModal.errorBookmark.textContent = "";
+    domModal.errorBookmark.textContent = '';
     domModal.bookMark.style.border = greenMessage;
   }
 
@@ -233,49 +232,49 @@ domMain.submitBtn.addEventListener("click", (ev) => {
     const input = document.querySelectorAll('input[type="text"]');
     input.forEach((inp) => {
       // console.log(inp);
-      inp.value = "";
+      inp.value = '';
     });
-    domModal.pageNo.value = "";
+    domModal.pageNo.value = '';
     domMain.modal.close();
   }
 });
 
 function createCard(obj, ind) {
-  const card = document.createElement("div");
-  card.classList.add("card");
+  const card = document.createElement('div');
+  card.classList.add('card');
 
-  const bookName = document.createElement("p");
+  const bookName = document.createElement('p');
   bookName.innerHTML = `Book Name: <span>${obj.name}</span>`;
-  bookName.classList.add("card__book-name");
+  bookName.classList.add('card__book-name');
   card.append(bookName);
 
-  const author = document.createElement("p");
+  const author = document.createElement('p');
   author.innerHTML = `Author: <span>${obj.author}</span>`;
-  author.classList.add("card__author");
+  author.classList.add('card__author');
   card.append(author);
 
-  const page = document.createElement("p");
+  const page = document.createElement('p');
   page.innerHTML = `page Number: <span>${obj.page}</span>`;
-  page.classList.add("card__page");
+  page.classList.add('card__page');
   card.append(page);
 
-  const div = document.createElement("div");
-  const read = document.createElement("p");
+  const div = document.createElement('div');
+  const read = document.createElement('p');
   read.innerHTML = `Have you read?: <span>${
-    obj.isRead == "yes" ? "✅" : "❌"
+    obj.isRead == 'yes' ? '✅' : '❌'
   }</span>`;
-  read.classList.add("card__read");
+  read.classList.add('card__read');
   div.append(read);
 
-  const bookmark = document.createElement("p");
+  const bookmark = document.createElement('p');
   bookmark.innerHTML = `bookmark: <span>${obj.bookMark}</span>`;
-  bookmark.classList.add("card__bookmark");
+  bookmark.classList.add('card__bookmark');
   div.append(bookmark);
   card.append(div);
 
-  const deleteBtn = document.createElement("button");
+  const deleteBtn = document.createElement('button');
   deleteBtn.innerHTML = `Remove`;
-  deleteBtn.classList.add("delete-btn");
+  deleteBtn.classList.add('delete-btn');
   deleteBtn.dataset.index = ind;
   card.append(deleteBtn);
 
@@ -283,7 +282,7 @@ function createCard(obj, ind) {
 }
 
 function removeAllChild() {
-  const div = document.querySelectorAll(".book-display .card");
+  const div = document.querySelectorAll('.book-display .card');
   div.forEach((el) => {
     domMain.bookDisplay.removeChild(el);
   });
@@ -291,8 +290,8 @@ function removeAllChild() {
 
 // delete cards when delete button is clicked
 
-domMain.bookDisplay.addEventListener("click", (ev) => {
-  if (ev.target.dataset.index != undefined && domMain.view.value === "all") {
+domMain.bookDisplay.addEventListener('click', (ev) => {
+  if (ev.target.dataset.index != undefined && domMain.view.value === 'all') {
     // console.log(ev.target.dataset.index);
     CreateBook.deleteListBook(ev.target.dataset.index);
     views = createViews();
@@ -306,7 +305,7 @@ domMain.bookDisplay.addEventListener("click", (ev) => {
 
 // console.log(arr);
 
-domMain.view.addEventListener("change", (ev) => {
+domMain.view.addEventListener('change', (ev) => {
   currentView = ev.target.value;
   removeAllChild();
   DisplayBooks.displayListBook(views[currentView]);
@@ -314,7 +313,7 @@ domMain.view.addEventListener("change", (ev) => {
 
 // const sor = ;
 
-domMain.sorting.addEventListener("change", (ev) => {
+domMain.sorting.addEventListener('change', (ev) => {
   currentSorting = ev.target.value;
   removeAllChild();
   DisplayBooks.displayListBook(views[currentView]);
